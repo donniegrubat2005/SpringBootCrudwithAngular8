@@ -16,4 +16,20 @@ export class EmployeeService {
    public findAll(): Observable<Employee[]> {
     return this.http.get<Employee[]>(this.apiUrl);
   }
+
+  getEmployeeId(id: number): Observable<Employee[]> {
+    return this.http.get<Employee[]>(this.apiUrl+ '/'+ id);
+  }
+
+  public save(employee: Employee) {
+    return this.http.post<Employee>(this.apiUrl, employee);
+  }
+
+  public update(employee: Employee) {
+    return this.http.post<Employee>(this.apiUrl, employee.id);
+  }
+
+  deleteEmployee(id: number): Observable<Employee> {
+    return this.http.delete<Employee>(this.apiUrl + '/'+id);
+  }
 }
