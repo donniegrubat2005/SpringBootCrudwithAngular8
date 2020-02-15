@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from 'src/app/models/employee.model';
+import { IEmployee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class EmplistComponent implements OnInit {
 
-  employees: Employee[];
+  employees: IEmployee[];
 
   constructor(private empService: EmployeeService, private router: Router) { }
 
@@ -24,7 +24,7 @@ export class EmplistComponent implements OnInit {
     });
   }
 
-  deleteEmployee(employee: Employee): void {
+  deleteEmployee(employee: IEmployee): void {
     this.empService.deleteEmployee(employee.id)
     .subscribe(res =>{
      this.employeeList();

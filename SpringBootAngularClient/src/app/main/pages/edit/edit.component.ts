@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Employee } from 'src/app/models/employee.model';
+import { IEmployee } from 'src/app/models/employee.model';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Employee } from 'src/app/models/employee.model';
 })
 export class EditComponent implements OnInit {
 
-  employee: Employee[];
+  employee: IEmployee[];
   empForm: FormGroup;
   id: number;
   
@@ -31,29 +31,35 @@ export class EditComponent implements OnInit {
 
      this.route.paramMap.subscribe((params: ParamMap) => {
       let empId= parseInt(params.get('id'));
-      
-      this.empService.getEmployeeId(empId)
-      .subscribe( data => {
-        this.empForm.setValue(data);
-      });
+      if (empId) {
+        this.getEmployee(empId);  
+      }
+        
      });
   
 
   }
 
-  onSubmit() {
-    this.empService.update(this.empForm.value)
-      .subscribe(
-        data => {
-         this.gotoList();
-        },
-        error => {
-          alert(error);
-        });
-      
-    }
+  getEmployee(id: number) {
+    this.empService.getEmployeeId(id)
+      .subscribe( data => {
+        this.empForm.patchValue(data);
+        //console.log(this.empForm.value.firstname = data)
+      },
+      error => {
+       alert(error);
+     });
+  }
 
-  gotoList() {
+  onSubmit() {
+     this.empService.update(this.empForm.value).subscribe(employee => { 
+      employee = employee;
+      this.gotoEmployeeList(), error => console.log(error)
+    });
+   }
+      
+   
+    gotoEmployeeList() {
     this.router.navigate(['/home']);
   }
 

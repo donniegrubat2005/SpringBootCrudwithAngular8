@@ -11,8 +11,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees">
-            <td>{{ employee.id }}</td>
+          <tr *ngFor="let employee of employees; let i = index">
+            <td>{{ i+1 }}</td>
             <td>{{ employee.firstname }}</td>
             <td>{{ employee.lastname }}</td>
             <td>{{ employee.address }}</td>
