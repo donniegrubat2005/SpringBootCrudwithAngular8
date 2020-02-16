@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { IEmployee } from 'src/app/models/employee.model';
@@ -24,9 +24,9 @@ export class EditComponent implements OnInit {
 
      this.empForm =this.fb.group({
        id: [''],
-       firstname: [''],
-       lastname: [''],
-       address: [''],
+       firstname: ['', Validators.required],
+       lastname: ['', Validators.required],
+       address: ['', Validators.required],
      });
 
      this.route.paramMap.subscribe((params: ParamMap) => {

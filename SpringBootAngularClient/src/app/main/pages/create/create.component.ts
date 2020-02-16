@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 
@@ -19,9 +19,9 @@ export class CreateComponent implements OnInit {
 
     this.empForm =this.fb.group({
       id: [''],
-      firstname: [''],
-      lastname: [''],
-      address: [''],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      address: ['', Validators.required],
     })
   }
 
