@@ -34,4 +34,8 @@ export class CreateComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  cancel() : void {
+    this.router.navigate(['/home']);
+  }
+
 }

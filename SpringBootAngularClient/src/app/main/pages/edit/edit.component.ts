@@ -58,8 +58,11 @@ export class EditComponent implements OnInit {
     });
    }
       
-   
     gotoEmployeeList() {
+    this.router.navigate(['/home']);
+  }
+
+  cancel() : void {
     this.router.navigate(['/home']);
   }
 
